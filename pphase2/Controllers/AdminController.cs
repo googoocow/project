@@ -18,7 +18,7 @@ namespace PhaseTwo.Controllers
 
         public PartialViewResult List()
         {
-            return PartialView(AdminRepo.GetAllAdmins());
+            return PartialView(DatabaseHelper.GetAll<Admin>().OrderBy(a => a.id));
         }
 
         // GET: Admin/Details/5

@@ -1,0 +1,18 @@
+﻿<h2>Users</h2>
+
+<div class="vtabs">
+    <ul>
+        <li><a href="#vtabs-1">Create</a></li>
+        <li><a href="#vtabs-2">List</a></li>
+
+    </ul>
+    <div id="vtabs-1">
+        <h2>Create</h2>
+        <div>@Html.Partial("~/Views/User/Create.cshtml")</div>
+    </div>
+    <div id="vtabs-2">
+        <h2>List</h2>
+        <p>@{ Html.RenderAction("List", "User"); }</p>
+    </div>
+</div>
+

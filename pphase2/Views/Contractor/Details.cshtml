@@ -1,0 +1,52 @@
+﻿@model PhaseTwo.Models.Contractor
+
+<div>
+    <h4>Contractor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jobsposted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jobsposted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hirerate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hirerate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.username }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PhaseTwoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="31" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="31" />
+          <Property Name="email" Type="varchar" MaxLength="63" />
+        </EntityType>
+        <EntityType Name="Contractors">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="31" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="31" />
+          <Property Name="email" Type="varchar" MaxLength="63" />
+          <Property Name="jobsposted" Type="int" />
+          <Property Name="hirerate" Type="int" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="31" />
+          <Property Name="email" Type="varchar" MaxLength="63" />
+          <Property Name="title" Type="varchar" MaxLength="127" />
+          <Property Name="content" Type="varchar" MaxLength="7999" />
+          <Property Name="dateposted" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="31" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" />
+          <Property Name="email" Type="varchar" MaxLength="63" />
+          <Property Name="jobtype" Type="varchar" MaxLength="63" />
+          <Property Name="rating" Type="tinyint" />
+          <Property Name="jobstaken" Type="int" />
+        </EntityType>
+        <Association Name="FK__Posts__username__239E4DCF">
+          <End Role="Contractors" Type="Self.Contractors" Multiplicity="0..1" />
+          <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contractors">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PhaseTwoDBModelStoreContainer">
+          <EntitySet Name="Admins" EntityType="Self.Admins" Schema="passispassword" store:Type="Tables" />
+          <EntitySet Name="Contractors" EntityType="Self.Contractors" Schema="passispassword" store:Type="Tables" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" Schema="passispassword" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="passispassword" store:Type="Tables" />
+          <AssociationSet Name="FK__Posts__username__239E4DCF" Association="Self.FK__Posts__username__239E4DCF">
+            <End Role="Contractors" EntitySet="Contractors" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PhaseTwoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="31" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="31" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="63" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Contractor">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="31" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="31" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="63" FixedLength="false" Unicode="false" />
+          <Property Name="jobsposted" Type="Int32" />
+          <Property Name="hirerate" Type="Int32" />
+          <NavigationProperty Name="Posts" Relationship="Self.FK__Posts__username__239E4DCF" FromRole="Contractors" ToRole="Posts" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="31" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="63" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" MaxLength="127" FixedLength="false" Unicode="false" />
+          <Property Name="content" Type="String" MaxLength="7999" FixedLength="false" Unicode="false" />
+          <Property Name="dateposted" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Contractor" Relationship="Self.FK__Posts__username__239E4DCF" FromRole="Posts" ToRole="Contractors" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="31" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="63" FixedLength="false" Unicode="false" />
+          <Property Name="jobtype" Type="String" MaxLength="63" FixedLength="false" Unicode="false" />
+          <Property Name="rating" Type="Byte" />
+          <Property Name="jobstaken" Type="Int32" />
+        </EntityType>
+        <Association Name="FK__Posts__username__239E4DCF">
+          <End Role="Contractors" Type="Self.Contractor" Multiplicity="0..1" />
+          <End Role="Posts" Type="Self.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contractors">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PhaseTwoDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Contractors" EntityType="Self.Contractor" />
+          <EntitySet Name="Posts" EntityType="Self.Post" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Posts__username__239E4DCF" Association="Self.FK__Posts__username__239E4DCF">
+            <End Role="Contractors" EntitySet="Contractors" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PhaseTwoDBModelStoreContainer" CdmEntityContainer="PhaseTwoDBEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="PhaseTwoDBModel.Admin">
+              <MappingFragment StoreEntitySet="Admins">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contractors">
+            <EntityTypeMapping TypeName="PhaseTwoDBModel.Contractor">
+              <MappingFragment StoreEntitySet="Contractors">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="jobsposted" ColumnName="jobsposted" />
+                <ScalarProperty Name="hirerate" ColumnName="hirerate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="PhaseTwoDBModel.Post">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="dateposted" ColumnName="dateposted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="PhaseTwoDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="jobtype" ColumnName="jobtype" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="jobstaken" ColumnName="jobstaken" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

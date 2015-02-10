@@ -13,10 +13,8 @@ namespace PhaseTwo.Models
         {
             return (new PhaseTwoDBEntities().Admins.Where(a => a.username == username).Count() == 1);
         }
-        public static IEnumerable<Admin> GetAllAdmins()
-        {
-            return new PhaseTwoDBEntities().Admins.ToList();
-		}
+		
+		//Could convert to generic
 		public static void AddAdmin(Admin admin) {
 			var ctx = new PhaseTwoDBEntities();
 			ctx.Admins.Add(admin);

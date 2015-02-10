@@ -20,7 +20,7 @@ namespace PhaseTwo.Controllers
         }
         public PartialViewResult List()
         {
-            return PartialView(ContractorRepo.GetAllContractors());
+			return PartialView(DatabaseHelper.GetAll<Contractor>().OrderBy(a => a.id));
         }
 
 

@@ -20,7 +20,7 @@ namespace PhaseTwo.Controllers
         }
         public PartialViewResult List()
         {
-            return PartialView(UserRepo.GetAllUsers());
+			return PartialView(DatabaseHelper.GetAll<User>().OrderBy(a => a.id));
         }
 
         // GET: User/Details/5

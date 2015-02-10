@@ -13,9 +13,5 @@ namespace PhaseTwo.Models
         {
             return (ctx.Users.Where(a => a.username == username).Count() == 1);
         }
-        public static IEnumerable<User> GetAllUsers()
-        {
-            return new PhaseTwoDBEntities().Users.ToList();
-        }
     }
 }

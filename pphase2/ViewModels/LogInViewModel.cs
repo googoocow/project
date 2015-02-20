@@ -6,11 +6,11 @@ using System.Web;
 
 namespace PhaseTwo.ViewModels
 {
-    public class SignInViewModel
+    public class Login
     {
 		[Required]
 		[Display(Name = "User Name")]
-		public string Username { get; set; }
+		public string UserName { get; set; }
 
 		[Required]
 		[DataType(DataType.Password)]

@@ -1,1 +1,4 @@
-﻿
+﻿@using PhaseTwo.Helpers;
+@Html.Partial("~/Views/Home/NotLoggedInIndex.cshtml").If(!User.Identity.IsAuthenticated)
+@Html.Partial("~/Views/Admin/Index.cshtml").If(User.IsInRole("admin"))
+@Html.Partial("~/Views/Admin/Index.cshtml").If(User.IsInRole("admin"))

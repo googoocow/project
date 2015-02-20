@@ -1,7 +1,7 @@
-﻿
+﻿@using PhaseTwo.Helpers; 
 <ul class="nav navbar-nav navbar-right">
-    <li>@Html.ActionLink("Login", "Index", "Home", new { @class = "navbar-right" })</li>
-    <li>@Html.ActionLink("Register", "Index", "Home", new { @class = "navbar-right" })</li>
-    <li>@Html.ActionLink("Dicks", "Index", "Home", new { @class = "navbar-right" })</li>
+	<li>@Html.ActionLink("Logout", "Index", "Logout").If(User.Identity.IsAuthenticated)</li>
+    <li>@Html.Partial("~/Views/Login/Index.cshtml").If(!User.Identity.IsAuthenticated)</li>
+    <li>@Html.ActionLink("Register", "Register", "Register")</li>
 </ul>
 

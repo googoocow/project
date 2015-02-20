@@ -15,3 +15,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.log-in{
+	width: 370px;
+	margin-top: 7.5px;
+}
+.log-in .form-group{
+	padding: 0 1px;
+}

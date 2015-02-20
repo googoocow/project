@@ -9,22 +9,23 @@
 
 namespace PhaseTwo.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class Admin
-    {
+	using System;
+	using System.Collections.Generic;
+
+	public partial class Admin
+	{
 		public int id { get; set; }
 		public string username { get; set; }
 		public string password { get; set; }
 		public string email { get; set; }
 
 		public Admin() { }
-		public Admin(string username, string password, string email) {
+		public Admin(string username, string password, string email)
+		{
 			this.username = username;
 			this.password = password;
 			this.email = email;
 		}
-        
-    }
+
+	}
 }

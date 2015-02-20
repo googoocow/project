@@ -12,15 +12,13 @@ namespace PhaseTwo.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Post
+    public partial class AspNetUserClaim
     {
-        public int id { get; set; }
-        public string username { get; set; }
-        public string email { get; set; }
-        public string title { get; set; }
-        public string content { get; set; }
-        public Nullable<System.DateTime> dateposted { get; set; }
+        public int Id { get; set; }
+        public string UserId { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
     
-        public virtual Contractor Contractor { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

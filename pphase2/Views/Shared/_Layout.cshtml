@@ -58,15 +58,15 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("DevNet", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                <img src="Content/img/devnet_logo.png" height="50%" width="50%">
+                <!--<img src="~/Content/img/devnet_logo.png" height="50%" width="50%">-->
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
-                    
                 </ul>
-                   @Html.Partial("~/Views/PartialViews/_Login.cshtml")
+					@Html.Partial("~/Views/PartialViews/_Login.cshtml")
+                   
             </div>
 
         </div>
@@ -75,9 +75,14 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - notdicks</p>
+            <p>&copy; @DateTime.Now.Year - A Great Big Dick</p>
         </footer>
     </div>
+
+	@section Scripts {
+		@Scripts.Render("~/bundles/jqueryval")
+	}
+
 
 </body>
 </html>

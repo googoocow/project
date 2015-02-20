@@ -9,25 +9,25 @@ namespace PhaseTwo.Models
 
     public enum UserType{ Invalid, Admin, Contractor, User }
 
-    public class SignInRepo
+    public class LoginRepo
     {
         PhaseTwoDBEntities ctx = new PhaseTwoDBEntities();
 
-        public static UserType GetUserType(SignInViewModel model)
+        public static UserType GetUserType(Login model)
         {
-            if (SignInRepo.IsValid(model)) return UserType.Invalid;
+            if (LoginRepo.IsValid(model)) return UserType.Invalid;
 
-            string username = model.Username;
+            string username = model.UserName;
 
-            if (AdminRepo.UserNameExists(username)) return UserType.Admin;
-            if (UserRepo.UserNameExists(username)) return UserType.User;
+            if (AdminRepo.UserNameExists(username))		 return UserType.Admin;
+            if (UserRepo.UserNameExists(username))		 return UserType.User;
             if (ContractorRepo.UserNameExists(username)) return UserType.Contractor;
 
             return UserType.Invalid;
         }
-        public static bool IsValid(SignInViewModel model)
+		public static bool IsValid(Login model)
         {
-            if (model.Username == null || model.Username == "") return false;
+			if (model.UserName == null || model.UserName == "") return false;
             if (model.Password == null || model.Password == "") return false;
 
             return true;

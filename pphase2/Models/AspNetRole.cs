@@ -12,15 +12,16 @@ namespace PhaseTwo.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Post
+    public partial class AspNetRole
     {
-        public int id { get; set; }
-        public string username { get; set; }
-        public string email { get; set; }
-        public string title { get; set; }
-        public string content { get; set; }
-        public Nullable<System.DateTime> dateposted { get; set; }
+        public AspNetRole()
+        {
+            this.AspNetUsers = new HashSet<AspNetUser>();
+        }
     
-        public virtual Contractor Contractor { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+    
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }
